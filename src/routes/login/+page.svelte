@@ -1,12 +1,17 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { setJwtToken } from '../../utils/storageUtils';
+	import { getJwtToken, setJwtToken } from '../../utils/storageUtils';
 
 	let username = $state('');
 	let password = $state('');
 
 	let submitErrMsg = $state('');
 	let apiStatus = $state(0);
+
+	const jwt_token = getJwtToken();
+	if (jwt_token) {
+		goto('/');
+	}
 
 	const submitForm = async (event: SubmitEvent) => {
 		event.preventDefault();
