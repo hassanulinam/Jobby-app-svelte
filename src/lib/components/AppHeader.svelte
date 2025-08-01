@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { removeJwtToken } from '../utils/storageUtils';
+	import { removeJwtToken } from '../../utils/storageUtils';
 
 	const logoutTheSession = (): void => {
 		removeJwtToken();
