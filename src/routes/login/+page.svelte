@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 	import { getJwtToken, setJwtToken } from '../../utils/storageUtils';
 
 	let username = $state('');
@@ -8,10 +9,12 @@
 	let submitErrMsg = $state('');
 	let apiStatus = $state(0);
 
-	const jwt_token = getJwtToken();
-	if (jwt_token) {
-		goto('/');
-	}
+	onMount(() => {
+		const jwt_token = getJwtToken();
+		if (jwt_token) {
+			goto('/');
+		}
+	});
 
 	const submitForm = async (event: SubmitEvent) => {
 		event.preventDefault();
