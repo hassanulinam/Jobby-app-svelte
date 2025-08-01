@@ -9,3 +9,7 @@ export const setJwtToken = (value: string) => {
 export const getJwtToken = (): string | undefined => {
     return Cookies.get(jwtTokenKey)
 }
+
+export const removeJwtToken = ():void => {
+    Cookies.remove(jwtTokenKey)
+}
