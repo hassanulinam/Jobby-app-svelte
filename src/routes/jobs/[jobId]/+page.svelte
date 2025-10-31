@@ -16,7 +16,6 @@
 	const getJobDetails = async () => {
 		apiStatus = apiStatusConstants.inProgress;
 
-		debugger;
 		const URL = `https://apis.ccbp.in/jobs/${jobId}`;
 		const response = await fetch(URL, fetchOptions);
 

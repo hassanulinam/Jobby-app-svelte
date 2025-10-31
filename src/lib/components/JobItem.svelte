@@ -45,6 +45,10 @@
 </li>
 
 <style>
+	.job-item-card-link {
+		text-decoration: none;
+	}
+
 	.job-item-card-container {
 		background-color: rgba(200, 200, 200, 0.2);
 		color: white;
