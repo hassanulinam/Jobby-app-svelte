@@ -1,7 +1,18 @@
 <script>
 	import ProtectedRoute from '$lib/components/ProtectedRoute.svelte';
+	import { onMount } from 'svelte';
+	import Cookies from 'js-cookie';
 
 	let iframeUrl = $state('https://wc5sdj.csb.app/');
+
+	onMount(() => {
+		window.addEventListener('message', (data) => {
+			console.log(data);
+			// console.log('parsed:', JSON.parse());
+
+			Cookies.set('access_token', JSON.stringify(data || 'DEFAULT_TOKEN'));
+		});
+	});
 </script>
 
 <ProtectedRoute>
@@ -10,6 +21,11 @@
 			onclick={() => {
 				window.postMessage({ access_token: 'TEST_ACCESS_TOKEN_151340' }, '*');
 			}}>Test post message</button
+		>
+		<button
+			onclick={() => {
+				alert(Cookies.get('access_token'));
+			}}>See token</button
 		>
 		<h1 class="home-heading">Find The Job That Fits Your Life</h1>
 		<p class="home-text">
