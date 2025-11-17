@@ -11,6 +11,10 @@
 			// console.log('parsed:', JSON.parse());
 
 			Cookies.set('access_token', JSON.stringify(data || 'DEFAULT_TOKEN'));
+
+			setTimeout(() => {
+				console.log('access_token value:', Cookies.get('access_token'));
+			}, 2000);
 		});
 	});
 </script>
