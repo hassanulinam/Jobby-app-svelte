@@ -1,9 +1,16 @@
 <script>
 	import ProtectedRoute from '$lib/components/ProtectedRoute.svelte';
+
+	let iframeUrl = $state('https://wc5sdj.csb.app/');
 </script>
 
 <ProtectedRoute>
 	<div class="home-container">
+		<button
+			onclick={() => {
+				window.postMessage({ access_token: 'TEST_ACCESS_TOKEN_151340' }, '*');
+			}}>Test post message</button
+		>
 		<h1 class="home-heading">Find The Job That Fits Your Life</h1>
 		<p class="home-text">
 			Millions of people are searching for jobs, salary information, company reviews. Find the job
@@ -12,6 +19,16 @@
 		<a href="/jobs">
 			<button type="button" class="find-jobs-btn"> Find Jobs </button>
 		</a>
+
+		<input bind:value={iframeUrl} />
+
+		<iframe
+			src={iframeUrl}
+			title="test-iframe--cross-domain"
+			allow=""
+			sandbox="allow-same-origin allow-scripts"
+			class="test-iframe"
+		></iframe>
 	</div>
 </ProtectedRoute>
 
@@ -23,6 +40,7 @@
 		color: #ffffff;
 		background-image: url('https://assets.ccbp.in/frontend/react-js/home-lg-bg.png');
 		background-size: contain;
+		overflow-y: auto;
 	}
 
 	.home-heading {
@@ -63,5 +81,11 @@
 		.find-jobs-btn {
 			font-size: 18px;
 		}
+	}
+
+	.test-iframe {
+		display: block;
+		min-height: 500px;
+		width: 100%;
 	}
 </style>
