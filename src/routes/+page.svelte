@@ -10,7 +10,7 @@
 			console.log(data);
 			// console.log('parsed:', JSON.parse());
 
-			Cookies.set('access_token', JSON.stringify(data || 'DEFAULT_TOKEN'));
+			Cookies.set('access_token', JSON.stringify(data || 'DEFAULT_TOKEN'), { sameSite: 'none' });
 
 			setTimeout(() => {
 				console.log('access_token value:', Cookies.get('access_token'));
