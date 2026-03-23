@@ -6,16 +6,25 @@
 
 	let isLoading = true;
 	let isAuthenticated = false;
+	let needsRedirect = false;
+
+	// Check authentication immediately when component is created
+	const token = getJwtToken();
+
+	if (!token) {
+		// Set flag to redirect, don't redirect immediately as it might not work
+		needsRedirect = true;
+	} else {
+		// Token exists, initialize component normally
+		isAuthenticated = true;
+		isLoading = false;
+	}
 
 	onMount(() => {
-		const token = getJwtToken();
-
-		if (!token) {
+		// Perform redirect after component mounts if needed
+		if (needsRedirect) {
 			goto('/login');
-		} else {
-			isAuthenticated = true;
 		}
-		isLoading = false;
 	});
 </script>
 
